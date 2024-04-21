@@ -26,6 +26,10 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
   </head>
   <body>
     <header>
@@ -95,7 +99,7 @@
           />
           <button id="startButton" onclick="startTimer();">Start</button>
 
-          <div id="overlay"></div>
+          <div id="overlay" onclick="closePopup();"></div>
 
           <div id="taskPopup">
             <div class="popupContent">
@@ -134,7 +138,15 @@
         <button class="smallButton" onclick="logManualEvent()">
           + Log task
         </button>
-        <div id="overlay"></div>
+
+        <span
+          class="material-symbols-outlined iconButton"
+          onclick="logManualEvent()"
+        >
+          add
+        </span>
+
+        <div id="overlay" onclick="closePopup();"></div>
 
         <div id="manualTaskPopup">
           <div class="popupContent">
