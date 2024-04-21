@@ -115,30 +115,9 @@ function calculateStatistics() {
   const logs = JSON.parse(localStorage.getItem("logs")) || [];
   let totalDuration = 0;
 
-  logs.forEach((log) => {
-    const startTime = new Date(log.startTime);
-    const endTime = new Date(log.endTime);
-    totalDuration += endTime - startTime;
-  });
-
   const totalTasks = logs.length;
-  const totalHours = totalDuration / 3600000; // Convert milliseconds to hours
-  const averageTime = totalTasks ? totalHours / totalTasks : 0;
 
-  // Update HTML with the results
-  document.querySelector(".totalTime h2").textContent =
-    formatHoursAndMinutes(totalHours);
   document.querySelector(".totalTasks h2").textContent = totalTasks;
-  document.querySelector(".avgTime h2").textContent =
-    formatHoursAndMinutes(averageTime);
-
-  console.log("Statistics Updated:", { totalTasks, totalHours, averageTime });
-}
-
-function formatHoursAndMinutes(hours) {
-  const h = Math.floor(hours);
-  const m = Math.floor((hours - h) * 60);
-  return `${h}h ${m}m`;
 }
 
 document.addEventListener("DOMContentLoaded", calculateStatistics);
