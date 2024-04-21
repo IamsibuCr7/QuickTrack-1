@@ -139,7 +139,10 @@ function calculateStatistics() {
   document.querySelector(".totalTasks h2").textContent = totalTasks;
 }
 
-document.addEventListener("DOMContentLoaded", calculateStatistics);
+document.addEventListener(
+  "DOMContentLoaded",
+  setInterval(calculateStatistics, 1000)
+);
 
 document.addEventListener("DOMContentLoaded", function () {
   updateLogsDisplay();
