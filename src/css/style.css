@@ -213,6 +213,7 @@ h2 {
   border-radius: 8px;
   padding: 16px 32px;
   align-items: center;
+  margin-bottom: 8px;
 }
 
 .taskItem > h4 {
