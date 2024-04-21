@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QuickTrack - Easy & simple time tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="css/style.css" />
     <link
       rel="stylesheet"
@@ -84,15 +85,27 @@
       </div>
       <div class="border"></div>
       <div class="above-fold">
-        <h1>Good morning</h1>
+        <h1 id="userGreeting"></h1>
         <div class="addTask">
           <input
             type="text"
             name="taskName"
-            id="taskName"
+            id="activityName"
             placeholder="What are you working on?"
           />
-          <button>Start</button>
+          <button id="startButton" onclick="startTimer();">Start</button>
+
+          <div id="overlay"></div>
+
+          <div id="taskPopup">
+            <div class="popupContent">
+              <h2>Tracking task</h2>
+
+              <h3 id="popupTaskName"><span></span></h3>
+              <h1 id="timerDisplay">00:00:00</h1>
+              <button onclick="stopTimer();">Finish task</button>
+            </div>
+          </div>
         </div>
         <div class="report">
           <div class="totalTime">
@@ -117,34 +130,8 @@
     </header>
     <div class="content">
       <h2>Task list</h2>
-      <div class="taskItem">
-        <h3 class="taskName">Create design system</h4>
-        <p class="taskStartEnd">3:00 PM - 4:30 PM</p>
-        <p class="duration">1h 30m</p>
-        <div class="actions">
-          <span class="material-symbols-outlined edit"> edit </span>
-          <span class="material-symbols-outlined delete"> delete </span>
-        </div>
-      </div>
-      <div class="taskItem">
-        <h3 class="taskName">Logo design</h4>
-        <p class="taskStartEnd">3:00 PM - 4:30 PM</p>
-        <p class="duration">1h 30m</p>
-        <div class="actions">
-          <span class="material-symbols-outlined edit"> edit </span>
-          <span class="material-symbols-outlined delete"> delete </span>
-        </div>
-      </div>
-      <div class="taskItem">
-        <h3 class="taskName">Market research</h4>
-        <p class="taskStartEnd">3:00 PM - 4:30 PM</p>
-        <p class="duration">1h 30m</p>
-        <div class="actions">
-          <span class="material-symbols-outlined edit"> edit </span>
-          <span class="material-symbols-outlined delete"> delete </span>
-        </div>
-      </div>
-
     </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
