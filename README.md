@@ -11,11 +11,13 @@ A very clean implementation of a task time tracker app, which allows users to ad
 - Average time spent on a task
 
 **Future implementations**
+
 We would like to integrate a reporting page that allows users to have a full breakdown of analytics, such as seeing chart view to see their progrses. 
 Also, we would like to provide search and categorizaing tasks by day, so it's easier for the user to see their tasks.
 
 
 **Instructions**
+
 In order to have the application on your device, please follow the below steps:
 
 - **Development** : Run `npm run dev` - This will start the development server and open the app in the default browser. You can then work with the files in the src/ folder and can see instant updates in the browser.
