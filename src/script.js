@@ -132,18 +132,55 @@ updateGreeting();
 
 function calculateStatistics() {
   const logs = JSON.parse(localStorage.getItem("logs")) || [];
-  let totalDuration = 0;
+  const duration = logs.duration;
+  let initialDuration = 0;
 
   const totalTasks = logs.length;
+
+  const totalDurationSeconds = logs.reduce((total, log) => {
+    const [hours, minutes, seconds] = log.duration.split(":").map(Number);
+    return total + hours * 3600 + minutes * 60 + seconds;
+  }, 0);
+
+  const totalHours = Math.floor(totalDurationSeconds / 3600);
+  const totalMinutes = Math.floor((totalDurationSeconds % 3600) / 60);
+  const totalSeconds = totalDurationSeconds % 60;
+  const totalDuration = [
+    totalHours.toString().padStart(2, "0"),
+    totalMinutes.toString().padStart(2, "0"),
+    totalSeconds.toString().padStart(2, "0"),
+  ].join(":");
+
+  document.querySelector(".totalTime h2").textContent = totalDuration;
+
+  function avgTime(logs) {
+    if (!logs.length) return "00:00:00";
+    const avgSeconds = Math.floor(
+      logs
+        .map((log) => {
+          const [h, m, s] = log.duration.split(":").map(Number);
+          return h * 3600 + m * 60 + s;
+        })
+        .reduce((total, seconds) => total + seconds, 0) / totalTasks
+    );
+
+    const hours = Math.floor(avgSeconds / 3600);
+    const minutes = Math.floor((avgSeconds % 3600) / 60);
+    const seconds = avgSeconds % 60;
+
+    return [hours, minutes, seconds]
+      .map((v) => v.toString().padStart(2, "0"))
+      .join(":");
+  }
+
+  document.querySelector(".avgTime h2").textContent = avgTime(logs);
 
   document.querySelector(".totalTasks h2").textContent = totalTasks;
 }
 
-document.addEventListener(
-  "DOMContentLoaded",
-  setInterval(calculateStatistics, 1000)
-);
-
 document.addEventListener("DOMContentLoaded", function () {
   updateLogsDisplay();
+  calculateStatistics();
+  setInterval(updateLogsDisplay, 1000);
+  setInterval(calculateStatistics, 1000);
 });
