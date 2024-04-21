@@ -53,6 +53,55 @@ header {
   max-width: 600px;
 }
 
+#manualTaskPopup {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 24px;
+  background: white;
+  z-index: 1000;
+  border-radius: 8px;
+  width: 60%;
+  max-width: 600px;
+}
+
+.userInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.userInputs > input {
+  width: unset;
+  padding: 16px 24px;
+  background-color: white;
+  border: 1px solid #f2f3f7;
+  border-radius: 8px;
+}
+
+.userInputs > input[type="datetime-local"] {
+  color: black;
+}
+
+.userInputs > input[type="text"] {
+  color: black;
+}
+.userInputs > input::placeholder {
+  font-size: 14px;
+  padding: 16px 0px;
+  color: grey;
+}
+
+.userInputs > input:hover {
+  boder: 1px solid #eeeff2;
+}
+
+.userInputs > button {
+  margin: 24px 0px;
+}
+
 .popupContent {
   text-align: center;
 }

@@ -33,8 +33,27 @@ function stopTimer() {
 
 function closePopup() {
   document.getElementById("taskPopup").style.display = "none";
+  document.getElementById("manualTaskPopup").style.display = "none";
   document.getElementById("overlay").style.display = "none";
   document.body.classList.remove("no-scroll");
+}
+
+function logManualEvent() {
+  document.getElementById("manualTaskPopup").style.display = "block";
+  document.getElementById("overlay").style.display = "block";
+  document.body.classList.add("no-scroll");
+  const activityName = document.getElementById("manualActivityName").value;
+  const start = new Date(document.getElementById("startTime").value);
+  const end = new Date(document.getElementById("endTime").value);
+  logEvent(activityName, start, end);
+  updateLogsDisplay();
+  closePopup();
+}
+
+function logEvent(activityName, start, end) {
+  const logs = JSON.parse(localStorage.getItem("logs")) || [];
+  logs.push({ activityName, startTime: start, endTime: end });
+  localStorage.setItem("logs", JSON.stringify(logs));
 }
 
 function updateTimerDisplay() {
