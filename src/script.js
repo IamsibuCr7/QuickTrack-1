@@ -107,6 +107,35 @@ function updateGreeting() {
 }
 updateGreeting();
 
+function reportData() {
+  const logs = JSON.parse(localStorage.getItem("logs")) || [];
+  let totalDuration = 0; // Total duration in milliseconds
+
+  if (logs.length > 0) {
+    logs.forEach((log) => {
+      const startTime = new Date(log.startTime);
+      const endTime = new Date(log.endTime);
+      totalDuration += endTime - startTime;
+    });
+
+    const totalTasks = logs.length;
+    const totalHours = totalDuration / 3600000;
+    const averageTime = totalHours / totalTasks;
+
+    document.querySelector(".totalTime h2").textContent =
+      formatHoursAndMinutes(totalHours);
+    document.querySelector(".totalTasks h2").textContent = totalTasks;
+    document.querySelector(".avgTime h2").textContent =
+      formatHoursAndMinutes(averageTime);
+  } else {
+    document.querySelector(".totalTime h2").textContent = "0h 0m";
+    document.querySelector(".totalTasks h2").textContent = "0";
+    document.querySelector(".avgTime h2").textContent = "0h 0m";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", reportData);
+
 document.addEventListener("DOMContentLoaded", function () {
   updateLogsDisplay();
 });
