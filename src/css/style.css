@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap");
+
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #f7f8fc;
+}
+
+/* Header style */
+header {
+  height: 420px;
+  background-color: #4a70ff;
+}
+
+.navigation {
+  padding: 16px 64px;
+}
+
+.border {
+  border: 1px solid #577aff;
+}
+
+/* Above the fold message styling */
+.above-fold {
+  position: relative;
+  margin: 56px 144px 0px 144px;
+}
+
+h1 {
+  font-size: 40px;
+  line-height: 56px;
+  color: white;
+}
+
+/* Adding task styling */
+.addTask {
+  display: flex;
+  flex-direction: row;
+}
+
+input {
+  width: 100%;
+  padding: 16px 24px;
+  background-color: #6988ff;
+  border: 1px solid #809aff;
+  border-radius: 8px;
+}
+
+::placeholder {
+  color: white;
+  font-size: 14px;
+  padding: 16px 0px;
+}
+
+/* CTA button style */
+
+button {
+  font-size: 16px;
+  line-height: 24px;
+  margin-left: 16px;
+  border-radius: 8px;
+  background-color: #3f5fd8;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 16px 48px;
+}
+
+/* Reporting style */
+.report {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  margin-top: 56px;
+}
+.schedule,
+.tasks,
+.time {
+  padding: 10px;
+  background-color: #4a70ff;
+  border-radius: 100%;
+  color: white;
+}
+
+h4 {
+  font-size: 14px;
+  color: black;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.totalTime,
+.totalTasks,
+.avgTime {
+  width: 100%;
+  background-color: white;
+  border-radius: 8px;
+  padding: 24px 32px;
+}
+
+/* Tasks list */
+.content {
+  position: relative;
+  top: 156px;
+  margin: 0px 144px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+}
+
+.taskItem {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 16px 32px;
+  align-items: center;
+}
+
+.taskItem > h4 {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 32px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 24px;
+  align-items: center;
+}
+.delete,
+.edit {
+  color: #a2b1c6;
+}
+
+.taskName,
+.taskStartEnd {
+  flex: 1 1 auto;
+}
+.duration {
+  flex: auto;
+}
