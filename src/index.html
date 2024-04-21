@@ -131,7 +131,26 @@
     <div class="content">
       <div class="taskHead">
         <h2>Task list</h2>
-        <button class="smallButton">Log tasks</button>
+        <button class="smallButton" onclick="logManualEvent()">
+          Log tasks
+        </button>
+        <div id="overlay"></div>
+
+        <div id="manualTaskPopup">
+          <div class="popupContent">
+            <h2>Log Past Event</h2>
+            <div class="userInputs">
+              <input
+                type="text"
+                id="manualActivityName"
+                placeholder="Task name"
+              />
+              <input type="datetime-local" id="startTime" />
+              <input type="datetime-local" id="endTime" />
+              <button onclick="logManualEvent()">Log Event</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div id="tasksContainer"></div>
     </div>
