@@ -2,8 +2,7 @@
 
 A very clean implementation of a task time tracker app, which allows users to add their tasks and start tracking the time spent on each task. The tasks will be tracked and saved on internal storage of the user device allowing them to easily access the data without the need to have internet connection.
 
-**Feature list
-**
+**Feature list**
 - Responsive design
 - Add task name and track time
 - Log tasks from history
@@ -11,8 +10,7 @@ A very clean implementation of a task time tracker app, which allows users to ad
 - Total tasks tracked
 - Average time spent on a task
 
-**Future implementations
-**
+**Future implementations**
 We would like to integrate a reporting page that allows users to have a full breakdown of analytics, such as seeing chart view to see their progrses. 
 Also, we would like to provide search and categorizaing tasks by day, so it's easier for the user to see their tasks.
 
