@@ -3,7 +3,11 @@ var startTime = null;
 var elapsedTime = 0;
 
 function startTimer() {
-  if (timer) return;
+  if (timer) {
+    clearInterval(timer);
+    timer = null;
+  }
+  document.getElementById("timerDisplay").textContent = "00:00:00";
   const taskNameInput = document.getElementById("activityName");
   document.getElementById("popupTaskName").querySelector("span").textContent =
     taskNameInput.value || "Unnamed Task";
@@ -11,6 +15,7 @@ function startTimer() {
   document.getElementById("overlay").style.display = "block";
   document.body.classList.add("no-scroll");
   startTime = new Date();
+  elapsedTime = 0;
   timer = setInterval(updateTimerDisplay, 1000);
 }
 
@@ -30,7 +35,6 @@ function closePopup() {
   document.getElementById("taskPopup").style.display = "none";
   document.getElementById("overlay").style.display = "none";
   document.body.classList.remove("no-scroll");
-  document.getElementById("activityName").value = "";
 }
 
 function updateTimerDisplay() {
@@ -63,21 +67,21 @@ function logEvent(activityName, start, end) {
 
 function updateLogsDisplay() {
   const logs = JSON.parse(localStorage.getItem("logs")) || [];
-  const logList = document.querySelector(".content");
-  logList.innerHTML = "<h2>Task list</h2>";
+  const taskContainer = document.getElementById("tasksContainer");
+  taskContainer.innerHTML = "";
 
   logs.forEach((log, index) => {
     const div = document.createElement("div");
     div.className = "taskItem";
     div.innerHTML = `
-            <h3 class="taskName">${log.activityName}</h3>
-            <p class="taskStartEnd">${log.startTime} - ${log.endTime}</p>
-            <p class="duration">${log.duration}</p>
-            <div class="actions">
-                <span class="material-symbols-outlined delete" onclick="deleteLog(${index})">delete</span>
-            </div>
-        `;
-    logList.appendChild(div);
+          <h3 class="taskName">${log.activityName}</h3>
+          <p class="taskStartEnd">${log.startTime} - ${log.endTime}</p>
+          <p class="duration">${log.duration}</p>
+          <div class="actions">
+              <span class="material-symbols-outlined delete" onclick="deleteLog(${index})">delete</span>
+          </div>
+      `;
+    taskContainer.appendChild(div);
   });
 }
 
@@ -107,34 +111,37 @@ function updateGreeting() {
 }
 updateGreeting();
 
-function reportData() {
+function calculateStatistics() {
   const logs = JSON.parse(localStorage.getItem("logs")) || [];
-  let totalDuration = 0; // Total duration in milliseconds
+  let totalDuration = 0;
 
-  if (logs.length > 0) {
-    logs.forEach((log) => {
-      const startTime = new Date(log.startTime);
-      const endTime = new Date(log.endTime);
-      totalDuration += endTime - startTime;
-    });
+  logs.forEach((log) => {
+    const startTime = new Date(log.startTime);
+    const endTime = new Date(log.endTime);
+    totalDuration += endTime - startTime;
+  });
 
-    const totalTasks = logs.length;
-    const totalHours = totalDuration / 3600000;
-    const averageTime = totalHours / totalTasks;
+  const totalTasks = logs.length;
+  const totalHours = totalDuration / 3600000; // Convert milliseconds to hours
+  const averageTime = totalTasks ? totalHours / totalTasks : 0;
 
-    document.querySelector(".totalTime h2").textContent =
-      formatHoursAndMinutes(totalHours);
-    document.querySelector(".totalTasks h2").textContent = totalTasks;
-    document.querySelector(".avgTime h2").textContent =
-      formatHoursAndMinutes(averageTime);
-  } else {
-    document.querySelector(".totalTime h2").textContent = "0h 0m";
-    document.querySelector(".totalTasks h2").textContent = "0";
-    document.querySelector(".avgTime h2").textContent = "0h 0m";
-  }
+  // Update HTML with the results
+  document.querySelector(".totalTime h2").textContent =
+    formatHoursAndMinutes(totalHours);
+  document.querySelector(".totalTasks h2").textContent = totalTasks;
+  document.querySelector(".avgTime h2").textContent =
+    formatHoursAndMinutes(averageTime);
+
+  console.log("Statistics Updated:", { totalTasks, totalHours, averageTime });
 }
 
-document.addEventListener("DOMContentLoaded", reportData);
+function formatHoursAndMinutes(hours) {
+  const h = Math.floor(hours);
+  const m = Math.floor((hours - h) * 60);
+  return `${h}h ${m}m`;
+}
+
+document.addEventListener("DOMContentLoaded", calculateStatistics);
 
 document.addEventListener("DOMContentLoaded", function () {
   updateLogsDisplay();

@@ -121,6 +121,32 @@ button {
   padding: 16px 48px;
 }
 
+.smallButton {
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 8px;
+  background-color: white;
+  border: none;
+  color: black;
+  border: 1px solid #f2f3f7;
+  font-weight: 600;
+  padding: 0px 24px;
+  height: 48px;
+}
+
+.smallButton:hover {
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 8px;
+  background-color: #fcfcfc;
+  border: none;
+  color: #3f5fd8;
+  border: 1px solid #eeeff2;
+  font-weight: 600;
+  padding: 0px 24px;
+  height: 48px;
+}
+
 button:hover {
   background-color: #294ed8;
 }
@@ -176,6 +202,7 @@ h2 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .taskItem {
